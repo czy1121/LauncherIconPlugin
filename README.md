@@ -1,5 +1,6 @@
 # LauncherIconPlugin
 
+Android小工具，当构建类型不为release时，在启动图标上显示添加 版本/分支/时间 等信息
 
 ![](images/version_date.png)
 `V{version}-{date}`
