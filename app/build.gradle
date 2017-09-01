@@ -1,0 +1,47 @@
+
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url uri("../repo/")
+        }
+    }
+    dependencies {
+        classpath 'ezy.plugin:launchericon:1.1.2'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'ezy.plugin.launchericon'
+
+launcherIcon.useBranch(project)
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.1"
+
+    defaultConfig {
+        applicationId "ezy.demo.launchericonplugin"
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0.0"
+
+    }
+
+    dataBinding {
+        enabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        dev {}
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.+'
+}

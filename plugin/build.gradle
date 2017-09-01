@@ -1,0 +1,63 @@
+
+plugins {
+    id "com.gradle.plugin-publish" version "0.9.7"
+    id "com.jfrog.bintray" version "1.7.3"
+    id 'groovy'
+    id 'maven'
+}
+
+group='ezy.plugin'
+version='1.1.2'
+archivesBaseName='launchericon'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri("../repo/"))
+        }
+    }
+}
+
+bintray {
+    user = BINTRAY_USER
+    key = BINTRAY_KEY
+    configurations = ['archives']
+    publish = true
+
+    pkg {
+        repo = "maven"
+        name = "ezy.plugin.launchericon"
+        licenses = ["Apache-2.0"]
+
+    }
+}
+
+
+
+pluginBundle {
+    website = 'http://github.com/czy1121/'
+    vcsUrl = 'http://github.com/czy1121/'
+    description = 'Launcher Icon Overlay Plugin'
+    tags = ['launcher', 'icon']
+
+    plugins {
+        launcherIconPlugin {
+            id = 'ezy.plugin.launchericon'
+            displayName = 'Launcher Icon Overlay Plugin'
+        }
+    }
+
+    mavenCoordinates {
+        groupId = "ezy.plugin"
+        artifactId = "launchericon"
+    }
+}
